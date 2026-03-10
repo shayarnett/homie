@@ -636,6 +636,7 @@ SETUP
       let
         dashyStart = pkgs.writeShellScript "dashy-start" ''
           # Seed default config on first run
+          mkdir -p /var/lib/dashy
           if [ ! -f /var/lib/dashy/conf.yml ]; then
             cat > /var/lib/dashy/conf.yml <<'CONF'
           pageInfo:
@@ -713,7 +714,6 @@ SETUP
       "d /var/lib/homie-overseer 0755 ${user} ${user} -"
 "d /etc/pihole 0755 ${user} ${user} -"
       "d /etc/dnsmasq.d 0755 ${user} ${user} -"
-      "d /var/lib/dashy 0755 ${user} ${user} -"
       "d /var/lib/agentsview 0755 ${user} ${user} -"
       "d /var/lib/vaultwarden 0755 ${user} ${user} -"
       "d ${homeDir}/models 0755 ${user} ${user} -"
