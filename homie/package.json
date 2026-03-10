@@ -1,0 +1,40 @@
+{
+	"name": "@mariozechner/pi-homie",
+	"version": "0.55.3",
+	"description": "Homelab AI orchestrator with specialist agents",
+	"type": "module",
+	"bin": {
+		"homie": "dist/main.js"
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"CHANGELOG.md"
+	],
+	"scripts": {
+		"clean": "rm -rf dist",
+		"build": "tsgo -p tsconfig.build.json && chmod +x dist/main.js",
+		"dev": "tsgo -p tsconfig.build.json --watch --preserveWatchOutput",
+		"start": "node dist/main.js",
+		"prepublishOnly": "npm run clean && npm run build"
+	},
+	"dependencies": {
+		"@mariozechner/pi-agent-core": "^0.55.3",
+		"@mariozechner/pi-ai": "^0.55.3",
+		"@mariozechner/pi-coding-agent": "^0.55.3",
+		"@sinclair/typebox": "^0.34.0",
+		"ws": "^8.18.0",
+		"yaml": "^2.7.0"
+	},
+	"devDependencies": {
+		"@types/node": "^24.3.0",
+		"@types/ws": "^8.5.0",
+		"typescript": "^5.7.3"
+	},
+	"author": "Shay",
+	"license": "MIT",
+	"engines": {
+		"node": ">=20.0.0"
+	}
+}

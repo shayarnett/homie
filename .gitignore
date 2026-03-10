@@ -1,0 +1,14 @@
+node_modules/
+dist/
+result
+CLAUDE.local.md
+.claude/
+git/
+*.env
+*.env.*
+*.key
+*.pem
+__pycache__/
+.venv/
+venv/
+*.log
