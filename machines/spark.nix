@@ -635,6 +635,31 @@ SETUP
     systemd.services.dashy =
       let
         dashyStart = pkgs.writeShellScript "dashy-start" ''
+          # Seed default config on first run
+          if [ ! -f /var/lib/dashy/conf.yml ]; then
+            cat > /var/lib/dashy/conf.yml <<'CONF'
+          pageInfo:
+            title: Homie
+          sections:
+          - name: Services
+            items:
+            - title: Chat
+              url: http://chat.${domain}
+              icon: fas fa-comments
+            - title: Gitea
+              url: http://gitea.${domain}
+              icon: fas fa-code-branch
+            - title: Vaultwarden
+              url: http://vault.${domain}
+              icon: fas fa-lock
+            - title: AgentsView
+              url: http://agents.${domain}
+              icon: fas fa-robot
+            - title: Pi-hole
+              url: http://pihole.${domain}
+              icon: fas fa-shield-alt
+          CONF
+          fi
           exec /usr/bin/docker run --rm --name dashy \
             -p ${toString ports.dashy}:8080 \
             -v /var/lib/dashy/conf.yml:/app/user-data/conf.yml \
